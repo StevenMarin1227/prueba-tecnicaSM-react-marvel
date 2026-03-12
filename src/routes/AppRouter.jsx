@@ -6,19 +6,50 @@ import HomePage from "../pages/HomePage";
 import CharactersPage from "../pages/CharactersPage";
 import CharacterDetailPage from "../pages/CharacterDetailPage";
 
+import ProtectedRoute from "./ProtectedRoute";
+
 function AppRouter() {
   return (
     <BrowserRouter>
 
       <Routes>
 
+        {/* Login */}
+
         <Route path="/" element={<LoginPage />} />
 
-        <Route path="/home" element={<HomePage />} />
+        {/* Home protegido */}
 
-        <Route path="/characters" element={<CharactersPage />} />
+        <Route
+          path="/home"
+          element={
+            <ProtectedRoute>
+              <HomePage />
+            </ProtectedRoute>
+          }
+        />
 
-        <Route path="/characters/:id" element={<CharacterDetailPage />} />
+        {/* Lista personajes */}
+
+        <Route
+          path="/characters"
+          element={
+            <ProtectedRoute>
+              <CharactersPage />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Detalle personaje */}
+
+        <Route
+          path="/characters/:id"
+          element={
+            <ProtectedRoute>
+              <CharacterDetailPage />
+            </ProtectedRoute>
+          }
+        />
 
       </Routes>
 
